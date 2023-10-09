@@ -1,9 +1,12 @@
 ﻿using System;
+using System.Linq;
 
 namespace Assignment4
 {
         public class Bank
         {
+       ////     private Array[] detail;
+       ////public Array[][] details;
             private float _amt;
 
             public float Amount
@@ -43,26 +46,26 @@ namespace Assignment4
                 get { return _bal; }
                 set { _bal = value; }
             }
-
+           
 
             public void Deposit(float amt, DateTime depositDate, string branchname, long AccountNo)
 
             {
                 Total += amt;
-                Console.WriteLine($"Amount {Amount} had been Deposited to the Account number {AccountNo} on {depositDate} from {branchname} branch \n Total Balance {Total}");
+                Console.WriteLine($"Amount {Amount} had been Deposited to the Account number {AccountNo} on {depositDate} from {branchname} branch \nTotal Balance {Total}");
 
             }
 
             public void Deposit(long AccountNo, float amt, DateTime depositDate, string branchname)
             {
                 Total += amt;
-                Console.WriteLine($"Amount {amt} had been Deposited to the Account number {AccountNo} on {depositDate} from {branchname} branch \n Total Balance {Total}");
+                Console.WriteLine($"Amount {amt} had been Deposited to the Account number {AccountNo} on {depositDate} from {branchname} branch \nTotal Balance {Total}");
             }
 
             public void Deposit(long AccountNo, float amt, DateTime depositDate)
             {
                 Total += amt;
-                Console.WriteLine($"Amount {amt} had been Deposited to the Account number {AccountNo} on {depositDate} \n Total Balance {Total}");
+                Console.WriteLine($"Amount {amt} had been Deposited to the Account number {AccountNo} on {depositDate} \nTotal Balance {Total}");
             }
 
             public void Withdraw(float amt, DateTime depositDate, string branchname, long accountNo)
@@ -70,21 +73,28 @@ namespace Assignment4
             {
                 if (AccountNo == accountNo)
                 {
-                    if (amt < Total)
+                    if (BranchName == branchname) 
                     {
-                        Total -= amt;
-                        Console.WriteLine($"Amount {amt} had been withdrawn from the Account number {AccountNo} on {depositDate} from {branchname} branch");
-                        Console.WriteLine(" Remaining Balance:{0}", Total);
+                        if (amt < Total)
+                        {
+                            Total -= amt;
+                            Console.WriteLine($"Amount {amt} had been withdrawn from the Account number {AccountNo} on {depositDate} from {branchname} branch");
+                            Console.WriteLine(" Remaining Balance:{0}", Total);
+                        }
+                        else
+                        {
+                            Console.WriteLine("Insufficient Funds..\n Balance : {0}", Total);
+                            Console.WriteLine("Try Again");
+                        }
                     }
                     else
                     {
-                        Console.WriteLine("Insufficient Funds..\n Balance : {0}", Total);
-                        Console.WriteLine("Try Again");
+                        Console.WriteLine("Account Doesn't in these Branch");
                     }
                 }
                 else
                 {
-                    Console.WriteLine("u dont have account");
+                    Console.WriteLine(" Account Doesn't Exist...");
                 }
             }
 
