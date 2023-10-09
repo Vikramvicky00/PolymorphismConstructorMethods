@@ -1,7 +1,7 @@
 ﻿using System;
 
 
-namespace Assignment4
+namespace StudentEmployeeLibrary
 {
     public class Student
     {
